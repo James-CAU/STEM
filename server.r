@@ -116,7 +116,30 @@ shinyServer(function(input, output) {
     
     
     progress$inc(1/3, detail = "Doing part 3")
+  
+    #Create output tables
     
+    table2to4_1 <- percentages(ks2toks4_1)
+    table2to4_2 <- percentages(ks2toks4_2)
+    table4toFE_1 <- percentages(ks4toFE_1)
+    table4toFE_2 <- percentages(ks4toFE_2)
+    tableFEtoHE_1 <- percentages(FEtoHE_1)
+    tableFEtoHE_2 <- percentages(FEtoHE_2)
+    
+    
+    
+    
+
+    output$table_2to4_1 <- renderTable(table2to4_1)
+    output$table_2to4_2 <- renderTable(table2to4_2)
+    output$table_4toFE_1 <- renderTable(table4toFE_1)
+    output$table_4toFE_2 <- renderTable(table4toFE_2)
+    output$table_FEtoHE_1 <- renderTable(tableFEtoHE_1)
+    output$table_FEtoHE_2 <- renderTable(tableFEtoHE_2)
+    
+    
+    
+      
     #Output sankey 1:
     #Need to have columns called the same ting
     colnames(ks2toks4_1) <- c("source","target","value")
@@ -144,9 +167,6 @@ shinyServer(function(input, output) {
     edgelist1$source <- as.character(edgelist1$source)
     edgelist1$target <- as.character(edgelist1$target)
     
-    #Create output for table
-    
-    output$table1 <- renderTable(edgelist1)
     
     #Gives the nodes their name and then creates links  
     node_names1 <- factor(sort(unique(c(as.character(edgelist1$source), 
@@ -186,9 +206,6 @@ shinyServer(function(input, output) {
     edgelist2$source <- as.character(edgelist2$source)
     edgelist2$target <- as.character(edgelist2$target)
     
-    #Create output for table
-    
-    output$table2 <- renderTable(edgelist2)
     
     
     #Gives the nodes their name and then creates links  

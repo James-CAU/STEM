@@ -48,8 +48,6 @@ shinyUI(fluidPage(
                         selected=NULL,
                         c("HE participation"               = "[HE_Participation]" ,
                           "HE STEM Participation"          = "[HE_STEM_Participation]" ,
-                          "HE Achievement"                 = "[HE_Achievement]" ,
-                          "HE STEM Achievement"            = "[HE_STEM_Achievement]" ,
                           "HE Prioirty STEM Participation" = "[HE_Priority_STEM_Participation]",
                           "HE FE Column"                   ="[HE_FE_STEM]"
                         )))
@@ -180,15 +178,33 @@ shinyUI(fluidPage(
     
     #tables
     tabPanel("Table 1", 
-             fluidPage(
-               tableOutput("table1")
-               )
+             tabsetPanel(
+               tabPanel("KS2 to KS4",
+               tableOutput("table_2to4_1")),
+               
+               tabPanel("KS4 to FE",
+               tableOutput("table_4toFE_1")),
+               
+               tabPanel("FE to HE",
+               tableOutput("table_FEtoHE_1"))
+                 
+               
+             )
              ),
 
     
     tabPanel("Table 2", 
-             fluidPage(
-               tableOutput("table2")
+             tabsetPanel(
+               tabPanel("KS2 to KS4",
+                        tableOutput("table_2to4_2")),
+               
+               tabPanel("KS4 to FE",
+                        tableOutput("table_4toFE_2")),
+               
+               tabPanel("FE to HE",
+                        tableOutput("table_FEtoHE_2"))
+               
+               
              )
     )
   )
