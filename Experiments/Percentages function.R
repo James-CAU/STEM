@@ -1,14 +1,6 @@
-library(shiny)
 
-library(dplyr)
-
-library(networkD3)
-
-
-
-percentages <- function(input){
   
-  calc <- input 
+  calc <- tibble('s'=c('a','a','b'), 't'=c('b','c','c'), 'v'=c(2,5,2))
   
   colnames(calc) <- c('source', 'target', 'value')
   
@@ -22,14 +14,12 @@ percentages <- function(input){
   
   merge <- merge(calc,source_freq) %>%
     merge(target_freq) %>%
-    
+     
     transform(proportion_source = value/source_f) %>%
-    transform(proportion_source = round(proportion_source, digits=2)) %>%
+      transform(proportion_source = round(proportion_source, digits=2)) %>%
     
-    transform(proportion_target = value/target_f)%>%
-    transform(proportion_target = round(proportion_target, digits=2)) %>%
+     transform(proportion_target = value/target_f)%>%
+       transform(proportion_target = round(proportion_target, digits=2)) %>%
     
     subset(select = c(source, target, value, proportion_source, proportion_target, source_f, target_f))
   
-  return(merge)
-}
