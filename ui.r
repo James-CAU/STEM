@@ -7,9 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
 
-library("networkD3")
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -48,11 +46,12 @@ shinyUI(fluidPage(
     column(2,
            radioButtons("HE", "HE:",
                         selected=NULL,
-                        c("HE participation"             = "[HE_Participation]" ,
-                          "HE STEM Participation"        = "[HE_STEM_Participation]" ,
-                          "HE Achievement"               = "[HE_Achievement]" ,
-                          "HE STEM Achievement"          = "[HE_STEM_Achievement]" ,
-                          "HE Prioirty STEM Participation" = "[HE_Priority_STEM_Participation]"
+                        c("HE participation"               = "[HE_Participation]" ,
+                          "HE STEM Participation"          = "[HE_STEM_Participation]" ,
+                          "HE Achievement"                 = "[HE_Achievement]" ,
+                          "HE STEM Achievement"            = "[HE_STEM_Achievement]" ,
+                          "HE Prioirty STEM Participation" = "[HE_Priority_STEM_Participation]",
+                          "HE FE Column"                   ="[HE_FE_STEM]"
                         )))
   ),
   
@@ -176,7 +175,22 @@ shinyUI(fluidPage(
                  column(3, textOutput("FE_name2")),
                  column(2, textOutput("HE_name2"))
                ),
-               sankeyNetworkOutput("sankey2")))
+               sankeyNetworkOutput("sankey2"))),
+    
+    
+    #tables
+    tabPanel("Table 1", 
+             fluidPage(
+               tableOutput("table1")
+               )
+             ),
+
+    
+    tabPanel("Table 2", 
+             fluidPage(
+               tableOutput("table2")
+             )
+    )
   )
   
 )

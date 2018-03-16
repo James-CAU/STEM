@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
+
 
 # Define server logic 
 shinyServer(function(input, output) {
@@ -144,6 +144,10 @@ shinyServer(function(input, output) {
     edgelist1$source <- as.character(edgelist1$source)
     edgelist1$target <- as.character(edgelist1$target)
     
+    #Create output for table
+    
+    output$table1 <- renderTable(edgelist1)
+    
     #Gives the nodes their name and then creates links  
     node_names1 <- factor(sort(unique(c(as.character(edgelist1$source), 
                                         as.character(edgelist1$target)))))
@@ -181,6 +185,11 @@ shinyServer(function(input, output) {
     
     edgelist2$source <- as.character(edgelist2$source)
     edgelist2$target <- as.character(edgelist2$target)
+    
+    #Create output for table
+    
+    output$table2 <- renderTable(edgelist2)
+    
     
     #Gives the nodes their name and then creates links  
     node_names2 <- factor(sort(unique(c(as.character(edgelist2$source), 
