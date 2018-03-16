@@ -29,7 +29,9 @@ percentages <- function(input){
     transform(proportion_target = value/target_f)%>%
     transform(proportion_target = round(proportion_target, digits=2)) %>%
     
+
     subset(select = c(source, target, value, proportion_source, proportion_target, source_f, target_f))
+
   
   return(merge)
 }
