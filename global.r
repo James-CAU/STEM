@@ -4,6 +4,7 @@ library(dplyr)
 
 library(networkD3)
 
+library(stringr)
 
 
 percentages <- function(input){

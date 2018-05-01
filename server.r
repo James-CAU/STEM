@@ -127,7 +127,7 @@ shinyServer(function(input, output) {
     tableFEtoHE_2 <- percentages(FEtoHE_2)
     
     
-    
+
     
 
     output$table_2to4_1 <- renderTable(table2to4_1)
@@ -137,6 +137,25 @@ shinyServer(function(input, output) {
     output$table_FEtoHE_1 <- renderTable(tableFEtoHE_1)
     output$table_FEtoHE_2 <- renderTable(tableFEtoHE_2)
     
+    #Now they are in the correct order, we don't need the whitespace at the front of the strings. 
+    #We reomove them here so the sankey plots in colour
+    ks2toks4_1[,1] <- str_trim(ks2toks4_1[,1])
+    ks2toks4_1[,2] <- str_trim(ks2toks4_1[,2])
+    
+    ks4toFE_1[,1] <- str_trim(ks4toFE_1[,1])
+    ks4toFE_1[,2] <- str_trim(ks4toFE_1[,2])
+    
+    FEtoHE_1[,1] <- str_trim(FEtoHE_1[,1])
+    FEtoHE_1[,2] <- str_trim(FEtoHE_1[,2])
+    
+    ks2toks4_2[,1] <- str_trim(ks2toks4_2[,1])
+    ks2toks4_2[,2] <- str_trim(ks2toks4_2[,2])
+    
+    ks4toFE_2[,1] <- str_trim(ks4toFE_2[,1])
+    ks4toFE_2[,2] <- str_trim(ks4toFE_2[,2])
+    
+    FEtoHE_2[,1] <- str_trim(FEtoHE_2[,1])
+    FEtoHE_2[,2] <- str_trim(FEtoHE_2[,2])
     
     
       
@@ -145,6 +164,10 @@ shinyServer(function(input, output) {
     colnames(ks2toks4_1) <- c("source","target","value")
     colnames(ks4toFE_1) <- c("source","target","value")
     colnames(FEtoHE_1) <- c("source","target","value")
+    
+    #Size of KS4 cohort
+    cohort_1 <- paste0(sum(ks2toks4_1$value))
+    output$cohort_1 <-renderPrint(cohort_1)
     
     #This is to make sure the Sankey doesn't get confused if the same variable comes up twice.
     ks2toks4_1[,1] <- paste0(ks2toks4_1[,1], "")
@@ -186,6 +209,10 @@ shinyServer(function(input, output) {
     colnames(ks2toks4_2) <- c("source","target","value")
     colnames(ks4toFE_2) <- c("source","target","value")
     colnames(FEtoHE_2) <- c("source","target","value")
+    
+    #Size of KS4 cohort
+    cohort_2 <- paste0(sum(ks2toks4_2$value))
+    output$cohort_2 <-renderPrint(cohort_2)
     
     #This is to make sure the Sankey doesn't get confused if the same variable comes up twice.
     ks2toks4_2[,1] <- paste0(ks2toks4_2[,1], "")

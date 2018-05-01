@@ -30,26 +30,26 @@ shinyUI(fluidPage(
            radioButtons("KS4", "KS4 subject:",
                         selected=NULL,
                         c("KS4 science type"          = "[KS4_Science_Type]" ,
-                          "Maths attainment"          = "[GCSE_Maths]"
+                          "Maths attainment"          = "[GCSE_Maths]",
+                          "Level 2 science type"      = "[Level_2_Science_Type]"
                         ))),
     
     column(2,
            radioButtons("FE", "KS5:",
                         selected=NULL,
-                        c("KS5 science type"                 = "[KS5_Science_Type]",
-                          "Number of STEM A-Levels"          = "[no_of_STEM_ALEVELS_entered_grouped]" ,
-                          "KS5 any STEM taken"               = "[KS5_ANY_STEM]" ,
-                          "Number of Priority STEM A-Levels" = "[P_STEM_ALEVELS_entered_grouped]", 
-                          "FE science type"                  = "[FE_Science_Type]"
+                        c("KS5 science type (1)"                 = "[KS5_Science_Type_1]",
+                          "KS5 science type (2)"                 = "[KS5_Science_Type_2]",
+                          "KS5 science type (3)"                 = "[KS5_Science_Type_3]",
+                          "Number of core STEM A-Levels"     = "[core_STEM_A_LEVELS_grouped]" ,
+                          "Number of STEM related A-Levels"  = "[STEM_related_A_LEVELS_grouped]" ,
+                          "Level 3 science type"             = "[Level_3_Science_Type]"
                         ))),
     
     column(2,
            radioButtons("HE", "HE:",
                         selected=NULL,
-                        c("HE participation"               = "[HE_Participation]" ,
-                          "HE STEM Participation"          = "[HE_STEM_Participation]" ,
-                          "HE Prioirty STEM Participation" = "[HE_Priority_STEM_Participation]",
-                          "HE FE Column"                   ="[HE_FE_STEM]"
+                        c("HE science type (comparable)"     = "[HE_Science_Type_comparable]" ,
+                          "HE science type"                 = "[HE_Science_Type]" 
                         )))
   ),
   
@@ -178,6 +178,10 @@ shinyUI(fluidPage(
     
     #tables
     tabPanel("Table 1", 
+             fluidRow(
+               column(1, h5("Size of cohort 1:")),
+               column(1, textOutput("cohort_1"))),
+             
              tabsetPanel(
                tabPanel("KS2 to KS4",
                tableOutput("table_2to4_1")),
@@ -194,6 +198,10 @@ shinyUI(fluidPage(
 
     
     tabPanel("Table 2", 
+             fluidRow(
+               column(1, h5("Size of cohort 2:")),
+              column(1, textOutput("cohort_2"))),
+             
              tabsetPanel(
                tabPanel("KS2 to KS4",
                         tableOutput("table_2to4_2")),
